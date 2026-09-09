@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoanMitra AI - Home Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            900: '#001a35',
+                            800: '#0b2545',
+                            700: '#134074',
+                        },
+                        brand: {
+                            blue: '#1d4ed8',
+                            light: '#eff6ff',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased relative">
+
+    <div class="bg-navy-900 text-white text-xs py-2 px-4 border-b border-navy-800">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <div class="flex items-center space-x-6">
+                <span><i class="fas fa-headset mr-1"></i> Customer Support: <strong>+91 93765 43210</strong></span>
+                <span class="hidden sm:inline"><i class="fas fa-envelope mr-1"></i> <strong>support@loanmitrai.com</strong></span>
+            </div>
+            <div class="flex items-center space-x-3">
+                <span>Follow Us:</span>
+                <a href="#" class="w-5 h-5 bg-blue-600 rounded-sm flex items-center justify-center text-white text-[10px]"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="w-5 h-5 bg-blue-700 rounded-sm flex items-center justify-center text-white text-[10px]"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="w-5 h-5 bg-pink-600 rounded-sm flex items-center justify-center text-white text-[10px]"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="w-5 h-5 bg-red-600 rounded-sm flex items-center justify-center text-white text-[10px]"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <nav class="bg-white border-b border-gray-200 sticky top-0 z-40 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+
+            <div class="flex items-center space-x-2">
+                <div class="bg-blue-600 text-white p-2 rounded-lg">
+                    <i class="fas fa-shield-alt text-xl"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-extrabold text-navy-900 block leading-none">LoanMitra AI</span>
+                    <span class="text-[9px] text-gray-500 font-semibold tracking-wider block">AI-Powered Loan Assistance</span>
+                </div>
+            </div>
+
+            <div class="hidden lg:flex items-center space-x-6 text-xs font-semibold text-gray-700">
+                <a href="index.html" class="text-blue-600 border-b-2 border-blue-600 pb-1">Home</a>
+                <a href="about.html" class="hover:text-blue-600">About Us</a>
+                <a href="loan-product.html" class="hover:text-blue-600">Loan Products <i class="fas fa-chevron-down text-[9px]"></i></a>
+                <a href="emi.html" class="hover:text-blue-600">EMI Calculator</a>
+                <a href="faq.html" class="hover:text-blue-600">FAQs</a>
+                <a href="contact.html" class="hover:text-blue-600">Contact Us</a>
+            </div>
+
+            <div class="flex items-center space-x-3">
+                <div class="hidden sm:flex items-center space-x-2">
+                    <button class="w-36 h-9 flex items-center justify-center border border-blue-600 text-blue-600 hover:bg-blue-50 text-xs font-bold rounded-md transition" onclick="window.location.href='Login.aspx'">
+                        Access Application
+                    </button>
+                    <button class="w-36 h-9 flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-md shadow transition" onclick="window.location.href='Registration.aspx'">
+                        Sign Up
+                    </button>
+                </div>
+
+                <button id="mobileMenuBtn" class="lg:hidden p-2 text-navy-900 hover:text-blue-600 focus:outline-none text-xl" aria-label="Open Navigation Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div id="navBackdrop" class="fixed inset-0 bg-navy-900/60 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+    <aside id="sideDrawer" class="fixed top-0 right-0 w-80 max-w-[85vw] h-full bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col justify-between">
+        <div>
+            <div class="p-4 bg-navy-900 text-white flex justify-between items-center border-b border-navy-800">
+                <div class="flex items-center space-x-2">
+                    <div class="bg-blue-600 p-1.5 rounded">
+                        <i class="fas fa-shield-alt text-base text-white"></i>
+                    </div>
+                    <span class="font-bold text-base tracking-wide">LoanMitra AI</span>
+                </div>
+                <button id="closeDrawerBtn" class="w-8 h-8 rounded-full bg-navy-800 hover:bg-navy-700 text-white flex items-center justify-center transition focus:outline-none">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="p-4 space-y-1 text-sm font-semibold text-gray-700">
+                <a href="index.html" class="flex items-center justify-between p-3 rounded-lg bg-blue-50 text-blue-600 font-bold">
+                    <span><i class="fas fa-home w-6"></i> Home</span>
+                </a>
+
+                <a href="about.html" class="flex items-center p-3 rounded-lg hover:bg-gray-100 transition">
+                    <span><i class="fas fa-info-circle w-6"></i> About Us</span>
+                </a>
+
+                <a href="loan-product.html" class="flex items-center p-3 rounded-lg hover:bg-gray-100 transition">
+                    <span><i class="fas fa-boxes w-6"></i> Loan Products</span>
+                </a>
+
+                <a href="emi.html" class="flex items-center p-3 rounded-lg hover:bg-gray-100 transition">
+                    <span><i class="fas fa-calculator w-6"></i> EMI Calculator</span>
+                </a>
+
+                <a href="faq.html" class="flex items-center p-3 rounded-lg hover:bg-gray-100 transition">
+                    <span><i class="fas fa-question-circle w-6"></i> FAQs</span>
+                </a>
+
+                <a href="contact.html" class="flex items-center p-3 rounded-lg hover:bg-gray-100 transition">
+                    <span><i class="fas fa-envelope w-6"></i> Contact Us</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="p-4 border-t border-gray-200 bg-gray-50 space-y-2">
+            <button class="w-full py-2.5 border border-blue-600 text-blue-600 font-bold text-xs rounded-lg hover:bg-blue-50 transition" onclick="window.location.href='Login.aspx'">
+                Access Application
+            </button>
+            <button class="w-full py-2.5 bg-blue-600 text-white font-bold text-xs rounded-lg shadow hover:bg-blue-700 transition" onclick="window.location.href='Registration.aspx'">
+                Log In
+            </button>
+        </div>
+    </aside>
+
+    <section class="bg-gradient-to-b from-blue-50/50 to-white py-10 border-b">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+
+            <div class="lg:col-span-6 space-y-5">
+                <h1 class="text-3xl md:text-4xl font-extrabold text-navy-900 leading-tight">
+                    AI-Powered<br>
+                    <span class="text-blue-600">Loan Assistance Platform</span>
+                </h1>
+
+                <div class="flex flex-wrap text-xs text-gray-600 gap-2 font-medium">
+                    <span>Check your loan assessment report</span> •
+                    <span>Check Eligibility</span> •
+                    <span>Get Matched</span> •
+                    <span>Receive Funds</span>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 pt-2">
+                    <button class="w-full h-11 px-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-xs rounded-md shadow flex items-center justify-between transition">
+                        <span class="truncate">Apply Free</span>
+                        <i class="fas fa-arrow-right text-[11px] shrink-0 ml-1"></i>
+                    </button>
+
+                    <button class="w-full h-11 px-3 bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 font-semibold text-xs rounded-md shadow-sm flex items-center justify-between transition">
+                        <span class="truncate">Assessment Report</span>
+                        <i class="fas fa-arrow-right text-blue-600 text-[11px] shrink-0 ml-1"></i>
+                    </button>
+
+                    <button class="w-full h-11 px-3 bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 font-semibold text-xs rounded-md shadow-sm flex items-center justify-between transition">
+                        <span class="truncate">Check Eligibility</span>
+                        <i class="fas fa-arrow-right text-blue-600 text-[11px] shrink-0 ml-1"></i>
+                    </button>
+
+                    <button class="w-full h-11 px-3 bg-white border border-gray-300 hover:bg-gray-50 text-gray-700 font-semibold text-xs rounded-md shadow-sm flex items-center justify-between transition">
+                        <span class="truncate">Track Application</span>
+                        <i class="fas fa-arrow-right text-blue-600 text-[11px] shrink-0 ml-1"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="lg:col-span-3 text-center">
+                <div class="relative inline-block">
+                    <div class="">
+                        <img src="Images/q1.png" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="lg:col-span-3 space-y-4">
+                <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm text-center">
+                    <p class="text-xs font-bold text-gray-700 mb-3">Best Lenders For You</p>
+
+                    <div class="flex justify-center items-center gap-2 mb-3">
+                        <div class="w-8 h-8 rounded-full bg-sky-50 border border-sky-200 flex items-center justify-center shadow-xs" title="SBI Bank">
+                            <i class="fas fa-university text-sky-600 text-xs"></i>
+                        </div>
+                        <div class="w-8 h-8 rounded-full bg-red-50 border border-red-200 flex items-center justify-center shadow-xs" title="HDFC Bank">
+                            <i class="fas fa-building-columns text-red-600 text-xs"></i>
+                        </div>
+                        <div class="w-8 h-8 rounded-full bg-orange-50 border border-orange-200 flex items-center justify-center shadow-xs" title="ICICI Bank">
+                            <i class="fas fa-landmark text-orange-600 text-xs"></i>
+                        </div>
+                        <div class="w-8 h-8 rounded-full bg-purple-50 border border-purple-200 flex items-center justify-center shadow-xs" title="AXIS Bank">
+                            <i class="fas fa-vault text-purple-600 text-xs"></i>
+                        </div>
+                    </div>
+
+                    <span class="inline-block bg-blue-50 text-blue-700 text-[10px] font-bold px-2.5 py-1 rounded-full">
+                        <i class="fas fa-check-circle mr-1"></i> Up to 3 Lender Attempts
+                    </span>
+                </div>
+
+                <div class="bg-white p-4 rounded-xl border border-gray-200 shadow-sm text-center">
+                    <p class="text-xs font-bold text-gray-700 mb-1">AI Match Score</p>
+                    <div class="relative w-28 h-28 mx-auto flex items-center justify-center">
+                        <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+                            <path class="text-gray-200" stroke-width="3.5" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                            <path class="text-blue-600" stroke-dasharray="92, 100" stroke-width="3.5" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                        </svg>
+                        <div class="absolute flex flex-col items-center">
+                            <span class="text-xl font-extrabold text-navy-900">92%</span>
+                            <span class="text-[8px] text-gray-500 font-semibold">Excellent Match</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 mt-8 grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="bg-white p-3.5 rounded-xl border border-gray-200 flex items-center space-x-3 shadow-sm hover:border-blue-300 transition">
+                <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center shrink-0"><i class="fas fa-file-alt text-lg"></i></div>
+                <div class="min-w-0">
+                    <h4 class="font-extrabold text-gray-800 text-sm leading-tight">10,000+</h4>
+                    <p class="text-[11px] text-gray-500 font-medium truncate">Loans Processed</p>
+                </div>
+            </div>
+            <div class="bg-white p-3.5 rounded-xl border border-gray-200 flex items-center space-x-3 shadow-sm hover:border-blue-300 transition">
+                <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center shrink-0"><i class="fas fa-smile text-lg"></i></div>
+                <div class="min-w-0">
+                    <h4 class="font-extrabold text-gray-800 text-sm leading-tight">98%</h4>
+                    <p class="text-[11px] text-gray-500 font-medium truncate">Customer Satisfaction</p>
+                </div>
+            </div>
+            <div class="bg-white p-3.5 rounded-xl border border-gray-200 flex items-center space-x-3 shadow-sm hover:border-blue-300 transition">
+                <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center shrink-0"><i class="fas fa-users text-lg"></i></div>
+                <div class="min-w-0">
+                    <h4 class="font-extrabold text-gray-800 text-sm leading-tight">50+</h4>
+                    <p class="text-[11px] text-gray-500 font-medium truncate">Partner Lenders</p>
+                </div>
+            </div>
+            <div class="bg-white p-3.5 rounded-xl border border-gray-200 flex items-center space-x-3 shadow-sm hover:border-blue-300 transition">
+                <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center shrink-0"><i class="fas fa-shield-alt text-lg"></i></div>
+                <div class="min-w-0">
+                    <h4 class="font-extrabold text-gray-800 text-sm leading-tight">100%</h4>
+                    <p class="text-[11px] text-gray-500 font-medium truncate">Secure & Safe</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 bg-white border-b">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-xl font-bold text-center text-navy-900 mb-8">——— How It Works (6 Steps) ———</h2>
+
+            <div class="grid grid-cols-2 md:grid-cols-6 gap-4">
+                <div class="p-4 rounded-xl border border-gray-200 hover:border-blue-300 transition shadow-sm bg-white flex flex-col justify-between h-full text-center">
+                    <div>
+                        <div class="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-xs mx-auto mb-3">1</div>
+                        <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-3"><i class="fas fa-clipboard-check text-base"></i></div>
+                        <h3 class="font-bold text-xs text-gray-800 mb-1.5 leading-snug">Check Eligibility</h3>
+                    </div>
+                    <p class="text-[10px] text-gray-500 leading-tight">Check your loan eligibility in just 2 minutes</p>
+                </div>
+
+                <div class="p-4 rounded-xl border border-gray-200 hover:border-blue-300 transition shadow-sm bg-white flex flex-col justify-between h-full text-center">
+                    <div>
+                        <div class="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-xs mx-auto mb-3">2</div>
+                        <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-3"><i class="fas fa-id-badge text-base"></i></div>
+                        <h3 class="font-bold text-xs text-gray-800 mb-1.5 leading-snug">Complete KYC</h3>
+                    </div>
+                    <p class="text-[10px] text-gray-500 leading-tight">Verify your identity securely</p>
+                </div>
+
+                <div class="p-4 rounded-xl border border-gray-200 hover:border-blue-300 transition shadow-sm bg-white flex flex-col justify-between h-full text-center">
+                    <div>
+                        <div class="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-xs mx-auto mb-3">3</div>
+                        <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-3"><i class="fas fa-cloud-upload-alt text-base"></i></div>
+                        <h3 class="font-bold text-xs text-gray-800 mb-1.5 leading-snug">Upload Documents</h3>
+                    </div>
+                    <p class="text-[10px] text-gray-500 leading-tight">Upload required documents digitally</p>
+                </div>
+
+                <div class="p-4 rounded-xl border border-gray-200 hover:border-blue-300 transition shadow-sm bg-white flex flex-col justify-between h-full text-center">
+                    <div>
+                        <div class="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-xs mx-auto mb-3">4</div>
+                        <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-3"><i class="fas fa-sliders-h text-base"></i></div>
+                        <h3 class="font-bold text-xs text-gray-800 mb-1.5 leading-snug">AI Profile Analysis</h3>
+                    </div>
+                    <p class="text-[10px] text-gray-500 leading-tight">AI analyzes your profile and score</p>
+                </div>
+
+                <div class="p-4 rounded-xl border border-gray-200 hover:border-blue-300 transition shadow-sm bg-white flex flex-col justify-between h-full text-center">
+                    <div>
+                        <div class="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-xs mx-auto mb-3">5</div>
+                        <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-3"><i class="fas fa-university text-base"></i></div>
+                        <h3 class="font-bold text-xs text-gray-800 mb-1.5 leading-snug">Up to 3 Lender Attempts</h3>
+                    </div>
+                    <p class="text-[10px] text-gray-500 leading-tight">Work with up to 3 lenders for better approval</p>
+                </div>
+
+                <div class="p-4 rounded-xl border border-gray-200 hover:border-blue-300 transition shadow-sm bg-white flex flex-col justify-between h-full text-center">
+                    <div>
+                        <div class="w-6 h-6 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-xs mx-auto mb-3">6</div>
+                        <div class="w-10 h-10 bg-green-50 text-green-600 rounded-full flex items-center justify-center mx-auto mb-3"><i class="fas fa-sack-dollar text-base"></i></div>
+                        <h3 class="font-bold text-xs text-gray-800 mb-1.5 leading-snug">Loan Disbursement</h3>
+                    </div>
+                    <p class="text-[10px] text-gray-500 leading-tight">Get approved and receive funds in your account</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-10 bg-gray-50 border-b">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            <div>
+                <h3 class="text-base font-bold text-navy-900 mb-4">What We Offer</h3>
+                <div class="space-y-3">
+                    <div class="bg-white p-3.5 rounded-xl border border-gray-200 flex items-center space-x-3 shadow-sm hover:border-blue-300 transition">
+                        <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center shrink-0"><i class="fas fa-user text-base"></i></div>
+                        <div class="min-w-0">
+                            <h4 class="text-xs font-bold text-gray-800 leading-tight">Personal Loan</h4>
+                            <p class="text-[11px] text-gray-500 truncate">Quick funds for your personal needs</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-3.5 rounded-xl border border-gray-200 flex items-center space-x-3 shadow-sm hover:border-blue-300 transition">
+                        <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center shrink-0"><i class="fas fa-briefcase text-base"></i></div>
+                        <div class="min-w-0">
+                            <h4 class="text-xs font-bold text-gray-800 leading-tight">Business Loan</h4>
+                            <p class="text-[11px] text-gray-500 truncate">Grow your business with easy financing</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-3.5 rounded-xl border border-gray-200 flex items-center space-x-3 shadow-sm hover:border-blue-300 transition">
+                        <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center shrink-0"><i class="fas fa-home text-base"></i></div>
+                        <div class="min-w-0">
+                            <h4 class="text-xs font-bold text-gray-800 leading-tight">Home Loan</h4>
+                            <p class="text-[11px] text-gray-500 truncate">Buy your dream home easily</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-3.5 rounded-xl border border-gray-200 flex items-center space-x-3 shadow-sm hover:border-blue-300 transition">
+                        <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center shrink-0"><i class="fas fa-building text-base"></i></div>
+                        <div class="min-w-0">
+                            <h4 class="text-xs font-bold text-gray-800 leading-tight">Loan Against Property</h4>
+                            <p class="text-[11px] text-gray-500 truncate">Unlock the value of your property</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-3.5 rounded-xl border border-gray-200 flex items-center space-x-3 shadow-sm hover:border-blue-300 transition">
+                        <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center shrink-0"><i class="fas fa-industry text-base"></i></div>
+                        <div class="min-w-0">
+                            <h4 class="text-xs font-bold text-gray-800 leading-tight">Working Capital</h4>
+                            <p class="text-[11px] text-gray-500 truncate">Fuel your business operations</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <h3 class="text-base font-bold text-navy-900 mb-4">Why Choose Us</h3>
+                <div class="space-y-3">
+                    <div class="bg-white p-3.5 rounded-xl border border-gray-200 flex items-center space-x-3 shadow-sm hover:border-blue-300 transition">
+                        <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center shrink-0"><i class="fas fa-crosshairs text-base"></i></div>
+                        <div class="min-w-0">
+                            <h4 class="text-xs font-bold text-gray-800 leading-tight">AI-Powered Matching</h4>
+                            <p class="text-[11px] text-gray-500 truncate">Smart AI matches you with the best lenders.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-3.5 rounded-xl border border-gray-200 flex items-center space-x-3 shadow-sm hover:border-blue-300 transition">
+                        <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center shrink-0"><i class="fas fa-chart-line text-base"></i></div>
+                        <div class="min-w-0">
+                            <h4 class="text-xs font-bold text-gray-800 leading-tight">Dashboard Tracking</h4>
+                            <p class="text-[11px] text-gray-500 truncate">Track your application in real-time.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-3.5 rounded-xl border border-gray-200 flex items-center space-x-3 shadow-sm hover:border-blue-300 transition">
+                        <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center shrink-0"><i class="fas fa-sync-alt text-base"></i></div>
+                        <div class="min-w-0">
+                            <h4 class="text-xs font-bold text-gray-800 leading-tight">Up to 3 Lender Attempts</h4>
+                            <p class="text-[11px] text-gray-500 truncate">Higher chances of loan approval.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-3.5 rounded-xl border border-gray-200 flex items-center space-x-3 shadow-sm hover:border-blue-300 transition">
+                        <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center shrink-0"><i class="fas fa-file-signature text-base"></i></div>
+                        <div class="min-w-0">
+                            <h4 class="text-xs font-bold text-gray-800 leading-tight">Digital Agreement</h4>
+                            <p class="text-[11px] text-gray-500 truncate">Secure digital documentation.</p>
+                        </div>
+                    </div>
+                    <div class="bg-white p-3.5 rounded-xl border border-gray-200 flex items-center space-x-3 shadow-sm hover:border-blue-300 transition">
+                        <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-lg flex items-center justify-center shrink-0"><i class="fas fa-shield-cat text-base"></i></div>
+                        <div class="min-w-0">
+                            <h4 class="text-xs font-bold text-gray-800 leading-tight">Transparent Fee Structure</h4>
+                            <p class="text-[11px] text-gray-500 truncate">No hidden charges, complete transparency.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="py-10 bg-white border-b">
+        <div class="max-w-7xl mx-auto px-4">
+            <h3 class="text-base font-bold text-navy-900 mb-1">Our Loan Process</h3>
+            <p class="text-xs text-gray-500 mb-6">Processing steps</p>
+
+            <div class="bg-blue-50/50 p-6 rounded-xl border border-blue-100 flex flex-col md:flex-row items-center justify-between gap-4 text-center md:text-left">
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-yellow-100 rounded-xl flex items-center justify-center text-yellow-600 text-xl shrink-0"><i class="fas fa-money-bill-wave"></i></div>
+                    <div>
+                        <p class="text-[10px] text-gray-500">Loan Amount</p>
+                        <p class="text-sm font-extrabold text-navy-900">₹ 10,00,000</p>
+                        <p class="text-[9px] text-gray-400">Example</p>
+                    </div>
+                </div>
+
+                <i class="fas fa-arrow-right text-blue-400 hidden md:block"></i>
+
+                <div class="bg-white p-3.5 rounded-xl border border-gray-200 flex items-center space-x-3 shadow-sm">
+                    <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center text-blue-600 shrink-0"><i class="fas fa-clipboard-list"></i></div>
+                    <div>
+                        <p class="text-xs font-bold text-gray-700">Standard process</p>
+                        <p class="text-[10px] text-gray-500">Example</p>
+                    </div>
+                </div>
+
+                <i class="fas fa-arrow-right text-blue-400 hidden md:block"></i>
+
+                <div class="bg-white p-3.5 rounded-xl border border-gray-200 flex items-center space-x-3 shadow-sm">
+                    <div class="w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center text-amber-600 shrink-0"><i class="fas fa-crown"></i></div>
+                    <div>
+                        <p class="text-xs font-bold text-gray-700">Premium process</p>
+                        <p class="text-[10px] text-gray-500">Example</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-10 bg-gray-50 border-b">
+        <div class="max-w-7xl mx-auto px-4">
+            <h3 class="text-base font-bold text-navy-900 mb-6">Live Application Tracker (Demo)</h3>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <div class="lg:col-span-8 bg-white p-5 rounded-xl border border-gray-200 space-y-4 shadow-sm">
+                    <div class="space-y-2 text-xs">
+                        <div class="flex items-center space-x-2"><i class="fas fa-check-circle text-green-500"></i><span class="font-medium text-gray-700">Registration</span><span class="text-green-600 font-bold ml-auto">Completed</span><span class="text-gray-400 ml-4">20 May 2025</span></div>
+                        <div class="flex items-center space-x-2"><i class="fas fa-check-circle text-green-500"></i><span class="font-medium text-gray-700">KYC Verification</span><span class="text-green-600 font-bold ml-auto">Completed</span><span class="text-gray-400 ml-4">20 May 2025</span></div>
+                        <div class="flex items-center space-x-2"><i class="fas fa-check-circle text-green-500"></i><span class="font-medium text-gray-700">Profile Analysis</span><span class="text-green-600 font-bold ml-auto">Completed</span><span class="text-gray-400 ml-4">21 May 2025</span></div>
+                        <div class="flex items-center space-x-2"><i class="fas fa-check-circle text-green-500"></i><span class="font-medium text-gray-700">Income proof Analysis</span><span class="text-green-600 font-bold ml-auto">Completed</span><span class="text-gray-400 ml-4">22 May 2025</span></div>
+                        <div class="flex items-center space-x-2"><i class="fas fa-spinner fa-spin text-blue-600"></i><span class="font-semibold text-blue-600">Lender #1 Review</span><span class="text-blue-600 font-bold ml-auto">In Progress</span><span class="text-gray-400 ml-4">Since 22 May 2025</span></div>
+                        <div class="flex items-center space-x-2 text-gray-400"><i class="far fa-circle"></i><span>Lender #2 Standby</span><span class="ml-auto">Standby</span><span class="ml-4">-</span></div>
+                        <div class="flex items-center space-x-2 text-gray-400"><i class="far fa-circle"></i><span>Lender #3 Standby</span><span class="ml-auto">Standby</span><span class="ml-4">-</span></div>
+                        <div class="flex items-center space-x-2 text-gray-400"><i class="far fa-circle"></i><span>Loan Disbursement</span><span class="ml-auto">Pending</span><span class="ml-4">-</span></div>
+                    </div>
+
+                    <div class="border-t pt-4 grid grid-cols-2 md:grid-cols-3 gap-2 text-xs">
+                        <div>
+                            <span class="text-gray-400 block text-[10px]">Application ID</span>
+                            <span class="font-bold text-gray-700">LMAI-2025-000123</span>
+                        </div>
+                        <div>
+                            <span class="text-gray-400 block text-[10px]">Loan Amount</span>
+                            <span class="font-bold text-gray-700">₹ 10,00,000</span>
+                        </div>
+                        <div>
+                            <span class="text-gray-400 block text-[10px]">Status</span>
+                            <span class="font-bold text-blue-600">Lender #1 Review - In Progress</span>
+                        </div>
+                    </div>
+
+                    <button class="w-full py-2 bg-blue-600 text-white text-xs font-bold rounded-lg shadow hover:bg-blue-700 transition">Access Your Application</button>
+                </div>
+
+                <div class="lg:col-span-4 bg-white p-5 rounded-xl border border-gray-200 text-center space-y-4 shadow-sm">
+                    <h4 class="text-xs font-bold text-gray-700">Profile Completion</h4>
+
+                    <div class="relative w-28 h-28 mx-auto flex items-center justify-center">
+                        <svg class="w-full h-full transform -rotate-90" viewBox="0 0 36 36">
+                            <path class="text-gray-200" stroke-width="3" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                            <path class="text-blue-600" stroke-dasharray="75, 100" stroke-width="3" stroke-linecap="round" stroke="currentColor" fill="none" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" />
+                        </svg>
+                        <span class="absolute text-lg font-extrabold text-navy-900">75%</span>
+                    </div>
+
+                    <div class="space-y-1 text-left text-[11px] text-gray-600">
+                        <div class="flex justify-between items-center"><span>Basic Information</span><i class="fas fa-check-circle text-green-500"></i></div>
+                        <div class="flex justify-between items-center"><span>KYC Verification</span><i class="fas fa-check-circle text-green-500"></i></div>
+                        <div class="flex justify-between items-center"><span>Documents Upload</span><i class="fas fa-check-circle text-green-500"></i></div>
+                        <div class="flex justify-between items-center"><span>Profile Analysis</span><i class="fas fa-check-circle text-green-500"></i></div>
+                        <div class="flex justify-between items-center text-gray-400"><span>Lender Review</span><i class="far fa-circle"></i></div>
+                        <div class="flex justify-between items-center text-gray-400"><span>Disbursement</span><i class="far fa-circle"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-12 bg-white border-b">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <h3 class="text-base font-bold text-navy-900 mb-8">What Our Customers Say</h3>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-left">
+                <div class="p-5 bg-gray-50 rounded-xl border border-gray-200 flex flex-col justify-between h-full shadow-sm hover:border-blue-300 transition">
+                    <div class="space-y-3">
+                        <div class="text-yellow-400 text-xs">★★★★★</div>
+                        <p class="text-xs text-gray-600 italic leading-relaxed">"LoanMitra AI made my loan journey so easy. The dashboard tracking is excellent and very transparent."</p>
+                    </div>
+                    <div class="flex items-center space-x-3 pt-4 border-t border-gray-200/60 mt-4">
+                        <div class="w-8 h-8 bg-blue-200 rounded-full flex items-center justify-center font-bold text-xs text-blue-700 shrink-0">RS</div>
+                        <div>
+                            <h5 class="text-xs font-bold text-gray-800">Rahul Sharma</h5>
+                            <p class="text-[9px] text-gray-400">Business Owner</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-5 bg-gray-50 rounded-xl border border-gray-200 flex flex-col justify-between h-full shadow-sm hover:border-blue-300 transition">
+                    <div class="space-y-3">
+                        <div class="text-yellow-400 text-xs">★★★★★</div>
+                        <p class="text-xs text-gray-600 italic leading-relaxed">"Transparent process and great lender support. I got approval at the best lender option."</p>
+                    </div>
+                    <div class="flex items-center space-x-3 pt-4 border-t border-gray-200/60 mt-4">
+                        <div class="w-8 h-8 bg-pink-200 rounded-full flex items-center justify-center font-bold text-xs text-pink-700 shrink-0">PM</div>
+                        <div>
+                            <h5 class="text-xs font-bold text-gray-800">Priya Malhotra</h5>
+                            <p class="text-[9px] text-gray-400">Business Owner</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-5 bg-gray-50 rounded-xl border border-gray-200 flex flex-col justify-between h-full shadow-sm hover:border-blue-300 transition">
+                    <div class="space-y-3">
+                        <div class="text-yellow-400 text-xs">★★★★★</div>
+                        <p class="text-xs text-gray-600 italic leading-relaxed">"Best loan assistance platform with real-time tracking. Highly recommended."</p>
+                    </div>
+                    <div class="flex items-center space-x-3 pt-4 border-t border-gray-200/60 mt-4">
+                        <div class="w-8 h-8 bg-purple-200 rounded-full flex items-center justify-center font-bold text-xs text-purple-700 shrink-0">NS</div>
+                        <div>
+                            <h5 class="text-xs font-bold text-gray-800">Neha Singh</h5>
+                            <p class="text-[9px] text-gray-400">Business Owner</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-center space-x-1.5 mt-6">
+                <span class="w-2 h-2 bg-blue-600 rounded-full"></span>
+                <span class="w-2 h-2 bg-gray-300 rounded-full"></span>
+                <span class="w-2 h-2 bg-gray-300 rounded-full"></span>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-navy-900 text-gray-300 pt-10 pb-6">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 text-xs">
+            <div>
+                <h4 class="text-white font-bold text-sm mb-3">LoanMitra AI</h4>
+                <p class="text-gray-400 leading-relaxed">AI-Powered Loan Assistance Platform helping users find optimal financing with total transparency.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-sm mb-3">Quick Links</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-white">Loans</a></li>
+                    <li><a href="#" class="hover:text-white">EMI Calculator</a></li>
+                    <li><a href="#" class="hover:text-white">About Us</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-sm mb-3">Support</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-white">FAQs</a></li>
+                    <li><a href="#" class="hover:text-white">Contact Us</a></li>
+                    <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-sm mb-3">Contact Us</h4>
+                <p class="mb-1"><i class="fas fa-phone mr-2"></i> +91 93765 43210</p>
+                <p><i class="fas fa-envelope mr-2"></i> support@loanmitrai.com</p>
+            </div>
+        </div>
+        <div class="border-t border-navy-800 mt-8 pt-4 text-center text-[10px] text-gray-500">
+            © 2026 LoanMitra AI. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const closeDrawerBtn = document.getElementById('closeDrawerBtn');
+        const sideDrawer = document.getElementById('sideDrawer');
+        const navBackdrop = document.getElementById('navBackdrop');
+        const loansDropdownToggle = document.getElementById('loansDropdownToggle');
+        const loansSubmenu = document.getElementById('loansSubmenu');
+        const loansArrow = document.getElementById('loansArrow');
+
+        // Open Side Drawer
+        function openNav() {
+            sideDrawer.classList.remove('translate-x-full');
+            navBackdrop.classList.remove('opacity-0', 'pointer-events-none');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close Side Drawer
+        function closeNav() {
+            sideDrawer.classList.add('translate-x-full');
+            navBackdrop.classList.add('opacity-0', 'pointer-events-none');
+            document.body.style.overflow = '';
+        }
+
+        mobileMenuBtn.addEventListener('click', openNav);
+        closeDrawerBtn.addEventListener('click', closeNav);
+        navBackdrop.addEventListener('click', closeNav);
+
+        // Submenu Toggle inside Mobile Drawer
+        loansDropdownToggle.addEventListener('click', () => {
+            loansSubmenu.classList.toggle('hidden');
+            loansArrow.classList.toggle('rotate-180');
+        });
+    </script>
+</body>
+</html>

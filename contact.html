@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoanMitra AI - Contact Us</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            900: '#001a35',
+                            800: '#0b2545',
+                            700: '#134074',
+                        },
+                        brand: {
+                            blue: '#1d4ed8',
+                            light: '#eff6ff',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased relative">
+
+    <!-- TOP HEADER BAR -->
+    <div class="bg-navy-900 text-white text-xs py-2 px-4 border-b border-navy-800">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <div class="flex items-center space-x-6">
+                <span><i class="fas fa-headset mr-1"></i> Customer Support: <strong>+91 93765 43210</strong></span>
+                <span class="hidden sm:inline"><i class="fas fa-envelope mr-1"></i> <strong>support@loanmitrai.com</strong></span>
+            </div>
+            <div class="flex items-center space-x-3">
+                <span>Follow Us:</span>
+                <a href="#" class="w-5 h-5 bg-blue-600 rounded-sm flex items-center justify-center text-white text-[10px]"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="w-5 h-5 bg-blue-700 rounded-sm flex items-center justify-center text-white text-[10px]"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="w-5 h-5 bg-pink-600 rounded-sm flex items-center justify-center text-white text-[10px]"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="w-5 h-5 bg-red-600 rounded-sm flex items-center justify-center text-white text-[10px]"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <nav class="bg-white border-b border-gray-200 sticky top-0 z-40 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+
+            <div class="flex items-center space-x-2">
+                <div class="bg-blue-600 text-white p-2 rounded-lg">
+                    <i class="fas fa-shield-alt text-xl"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-extrabold text-navy-900 block leading-none">LoanMitra AI</span>
+                    <span class="text-[9px] text-gray-500 font-semibold tracking-wider block">AI-Powered Loan Assistance</span>
+                </div>
+            </div>
+
+            <div class="hidden lg:flex items-center space-x-6 text-xs font-semibold text-gray-700">
+                <a href="index.html" class="text-blue-600 border-b-2 border-blue-600 pb-1">Home</a>
+                <a href="about.html" class="hover:text-blue-600">About Us</a>
+                <a href="loan-product.html" class="hover:text-blue-600">Loan Products <i class="fas fa-chevron-down text-[9px]"></i></a>
+                <a href="emi.html" class="hover:text-blue-600">EMI Calculator</a>
+                <a href="faq.html" class="hover:text-blue-600">FAQs</a>
+                <a href="contact.html" class="hover:text-blue-600">Contact Us</a>
+            </div>
+
+            <div class="flex items-center space-x-3">
+                <div class="hidden sm:flex items-center space-x-2">
+                    <button class="w-36 h-9 flex items-center justify-center border border-blue-600 text-blue-600 hover:bg-blue-50 text-xs font-bold rounded-md transition" onclick="window.location.href='Login.aspx'">
+                        Access Application
+                    </button>
+                    <button class="w-36 h-9 flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-md shadow transition" onclick="window.location.href='Registration.aspx'">
+                        Sign Up
+                    </button>
+                </div>
+
+                <button id="mobileMenuBtn" class="lg:hidden p-2 text-navy-900 hover:text-blue-600 focus:outline-none text-xl" aria-label="Open Navigation Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div id="navBackdrop" class="fixed inset-0 bg-navy-900/60 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+    <aside id="sideDrawer" class="fixed top-0 right-0 w-80 max-w-[85vw] h-full bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col justify-between">
+        <div>
+            <div class="p-4 bg-navy-900 text-white flex justify-between items-center border-b border-navy-800">
+                <div class="flex items-center space-x-2">
+                    <div class="bg-blue-600 p-1.5 rounded">
+                        <i class="fas fa-shield-alt text-base text-white"></i>
+                    </div>
+                    <span class="font-bold text-base tracking-wide">LoanMitra AI</span>
+                </div>
+                <button id="closeDrawerBtn" class="w-8 h-8 rounded-full bg-navy-800 hover:bg-navy-700 text-white flex items-center justify-center transition focus:outline-none">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="p-4 space-y-1 text-sm font-semibold text-gray-700">
+                <a href="index.html" class="flex items-center justify-between p-3 rounded-lg bg-blue-50 text-blue-600 font-bold">
+                    <span><i class="fas fa-home w-6"></i> Home</span>
+                </a>
+
+                <a href="about.html" class="flex items-center p-3 rounded-lg hover:bg-gray-100 transition">
+                    <span><i class="fas fa-info-circle w-6"></i> About Us</span>
+                </a>
+
+                <a href="loan-product.html" class="flex items-center p-3 rounded-lg hover:bg-gray-100 transition">
+                    <span><i class="fas fa-boxes w-6"></i> Loan Products</span>
+                </a>
+
+                <a href="emi.html" class="flex items-center p-3 rounded-lg hover:bg-gray-100 transition">
+                    <span><i class="fas fa-calculator w-6"></i> EMI Calculator</span>
+                </a>
+
+                <a href="faq.html" class="flex items-center p-3 rounded-lg hover:bg-gray-100 transition">
+                    <span><i class="fas fa-question-circle w-6"></i> FAQs</span>
+                </a>
+
+                <a href="contact.html" class="flex items-center p-3 rounded-lg hover:bg-gray-100 transition">
+                    <span><i class="fas fa-envelope w-6"></i> Contact Us</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="p-4 border-t border-gray-200 bg-gray-50 space-y-2">
+            <button class="w-full py-2.5 border border-blue-600 text-blue-600 font-bold text-xs rounded-lg hover:bg-blue-50 transition" onclick="window.location.href='Login.aspx'">
+                Access Application
+            </button>
+            <button class="w-full py-2.5 bg-blue-600 text-white font-bold text-xs rounded-lg shadow hover:bg-blue-700 transition" onclick="window.location.href='Registration.aspx'">
+                Log In
+            </button>
+        </div>
+    </aside>
+
+
+    <!-- HERO SECTION -->
+    <section class="py-10 bg-gradient-to-r from-blue-50/50 via-white to-blue-50/50 border-b relative overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div>
+                <span class="text-xs font-bold text-blue-600 uppercase tracking-wider block mb-1">CONTACT US</span>
+                <h1 class="text-3xl md:text-4xl font-extrabold text-navy-900 mb-3">Get In Touch With <br><span class="text-blue-600">LoanMitra AI</span></h1>
+                <p class="text-xs text-gray-600 leading-relaxed mb-2 font-medium">
+                    We are here to help you throughout your loan application journey.
+                </p>
+                <p class="text-xs text-gray-500 leading-relaxed max-w-lg">
+                    Whether you have questions about eligibility, document requirements, application status, or technical support, our team is ready to assist you.
+                </p>
+            </div>
+            <div class="flex justify-center md:justify-end">
+                <div class="relative w-full max-w-md">
+                    <img src="Images/q6.png" alt="Customer Support" class="w-full h-56 object-cover rounded-2xl shadow-md border">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- QUICK CONTACT CARDS (4 CARDS) -->
+    <section class="py-6 max-w-7xl mx-auto px-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+
+            <!-- Card 1: Call Support -->
+            <div class="bg-white rounded-xl border border-gray-200 p-5 text-center shadow-sm flex flex-col justify-between items-center">
+                <div>
+                    <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-3 text-lg">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <h3 class="font-bold text-xs text-navy-900 mb-1">Call Support</h3>
+                    <p class="text-xs font-extrabold text-navy-900 mb-4">+91 98765 43210</p>
+                </div>
+                <a href="tel:+919876543210" class="w-full py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg shadow transition">Call Now</a>
+            </div>
+
+            <!-- Card 2: WhatsApp Support -->
+            <div class="bg-white rounded-xl border border-gray-200 p-5 text-center shadow-sm flex flex-col justify-between items-center">
+                <div>
+                    <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-3 text-lg">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <h3 class="font-bold text-xs text-navy-900 mb-1">WhatsApp Support</h3>
+                    <p class="text-[11px] text-gray-500 mb-4">Chat with our expert</p>
+                </div>
+                <a href="https://wa.me/919876543210" class="w-full py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-lg shadow transition">Chat on WhatsApp</a>
+            </div>
+
+            <!-- Card 3: Email Support -->
+            <div class="bg-white rounded-xl border border-gray-200 p-5 text-center shadow-sm flex flex-col justify-between items-center">
+                <div>
+                    <div class="w-12 h-12 bg-purple-50 text-purple-600 rounded-full flex items-center justify-center mx-auto mb-3 text-lg">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3 class="font-bold text-xs text-navy-900 mb-1">Email Support</h3>
+                    <p class="text-[11px] text-gray-500 mb-4">support@loanmitrai.com</p>
+                </div>
+                <a href="mailto:support@loanmitrai.com" class="w-full py-2 bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold rounded-lg shadow transition">Send Email</a>
+            </div>
+
+            <!-- Card 4: Raise Support Ticket -->
+            <div class="bg-white rounded-xl border border-gray-200 p-5 text-center shadow-sm flex flex-col justify-between items-center">
+                <div>
+                    <div class="w-12 h-12 bg-amber-50 text-amber-500 rounded-full flex items-center justify-center mx-auto mb-3 text-lg">
+                        <i class="fas fa-ticket-alt"></i>
+                    </div>
+                    <h3 class="font-bold text-xs text-navy-900 mb-1">Raise Support Ticket</h3>
+                    <p class="text-[11px] text-gray-500 mb-4">Create a ticket for your issue</p>
+                </div>
+                <button class="w-full py-2 bg-amber-500 hover:bg-amber-600 text-white text-xs font-bold rounded-lg shadow transition">Raise Ticket</button>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FORM & INFO SECTION -->
+    <section class="py-6 max-w-7xl mx-auto px-4">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+            <!-- Contact Information Sidebar -->
+            <div class="bg-white rounded-xl border border-gray-200 p-6 shadow-sm space-y-5">
+                <h3 class="font-bold text-sm text-navy-900 border-b pb-3">Contact Information</h3>
+
+                <div class="flex items-start space-x-3 text-xs">
+                    <div class="w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 mt-0.5">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-navy-900">Phone Support</h4>
+                        <p class="text-gray-600 font-semibold">+91 98765 43210</p>
+                        <p class="text-[10px] text-gray-400">Mon - Sat | 9:00 AM - 7:00 PM</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start space-x-3 text-xs">
+                    <div class="w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 mt-0.5">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-navy-900">Email Support</h4>
+                        <p class="text-gray-600 font-semibold">support@loanmitrai.com</p>
+                        <p class="text-[10px] text-gray-400">We reply within 24 hours</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start space-x-3 text-xs">
+                    <div class="w-8 h-8 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 mt-0.5">
+                        <i class="fab fa-whatsapp"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-navy-900">WhatsApp Support</h4>
+                        <p class="text-gray-600 font-semibold">+91 98765 43210</p>
+                        <p class="text-[10px] text-gray-400">Mon - Sat | 9:00 AM - 7:00 PM</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start space-x-3 text-xs">
+                    <div class="w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 mt-0.5">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-navy-900">Office Address</h4>
+                        <p class="text-gray-600">LoanMitra AI [Company Name]<br>Office Address Line 1<br>City, State - PIN Code<br>India</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start space-x-3 text-xs">
+                    <div class="w-8 h-8 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center shrink-0 mt-0.5">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-navy-900">Business Hours</h4>
+                        <p class="text-gray-600">Monday - Saturday: 9:00 AM - 7:00 PM</p>
+                        <p class="text-red-500 font-semibold text-[10px]">Sunday: Closed</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Send Us A Message Form -->
+            <div class="lg:col-span-2 bg-white rounded-xl border border-gray-200 p-6 shadow-sm relative">
+                <div class="flex justify-between items-start mb-4">
+                    <h3 class="font-bold text-sm text-navy-900">Send Us A Message</h3>
+                    <div class="w-10 h-10 text-blue-500 opacity-20">
+                        <i class="fas fa-headset text-3xl"></i>
+                    </div>
+                </div>
+
+                <form class="space-y-4">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-navy-900 mb-1">Full Name</label>
+                            <input type="text" placeholder="Enter your full name" class="w-full text-xs p-2.5 border rounded-lg focus:outline-none focus:border-blue-600 bg-gray-50/50">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-navy-900 mb-1">Mobile Number</label>
+                            <input type="text" placeholder="Enter your mobile number" class="w-full text-xs p-2.5 border rounded-lg focus:outline-none focus:border-blue-600 bg-gray-50/50">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-bold text-navy-900 mb-1">Email Address</label>
+                            <input type="email" placeholder="Enter your email address" class="w-full text-xs p-2.5 border rounded-lg focus:outline-none focus:border-blue-600 bg-gray-50/50">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-bold text-navy-900 mb-1">Subject</label>
+                            <select class="w-full text-xs p-2.5 border rounded-lg focus:outline-none focus:border-blue-600 bg-gray-50/50 text-gray-500">
+                                <option>Select a subject</option>
+                                <option>Loan Application Support</option>
+                                <option>KYC Verification Support</option>
+                                <option>Document Upload Support</option>
+                                <option>Technical Support</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-bold text-navy-900 mb-1">Message</label>
+                        <textarea rows="4" placeholder="Type your message here..." class="w-full text-xs p-2.5 border rounded-lg focus:outline-none focus:border-blue-600 bg-gray-50/50 resize-none"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-lg shadow transition flex items-center justify-center space-x-2">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>Send Message</span>
+                    </button>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SUPPORT CATEGORIES & NEED IMMEDIATE ASSISTANCE -->
+    <section class="py-6 max-w-7xl mx-auto px-4">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+            <!-- Support Categories (Left 2 cols) -->
+            <div class="lg:col-span-2 bg-white rounded-xl border border-gray-200 p-6 shadow-sm">
+                <h3 class="font-bold text-sm text-navy-900 mb-4">Support Categories</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                    <a href="#" class="p-3 border rounded-lg flex items-center justify-between hover:border-blue-600 transition">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-file-alt text-blue-600"></i>
+                            <span class="font-semibold text-navy-900">Loan Application Support</span>
+                        </div>
+                        <i class="fas fa-chevron-right text-[10px] text-gray-400"></i>
+                    </a>
+                    <a href="#" class="p-3 border rounded-lg flex items-center justify-between hover:border-blue-600 transition">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-id-card text-emerald-600"></i>
+                            <span class="font-semibold text-navy-900">Dashboard Assistance</span>
+                        </div>
+                        <i class="fas fa-chevron-right text-[10px] text-gray-400"></i>
+                    </a>
+                    <a href="#" class="p-3 border rounded-lg flex items-center justify-between hover:border-blue-600 transition">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-user-check text-blue-600"></i>
+                            <span class="font-semibold text-navy-900">KYC Verification Support</span>
+                        </div>
+                        <i class="fas fa-chevron-right text-[10px] text-gray-400"></i>
+                    </a>
+                    <a href="#" class="p-3 border rounded-lg flex items-center justify-between hover:border-blue-600 transition">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-search text-blue-600"></i>
+                            <span class="font-semibold text-navy-900">Loan Status Enquiry</span>
+                        </div>
+                        <i class="fas fa-chevron-right text-[10px] text-gray-400"></i>
+                    </a>
+                    <a href="#" class="p-3 border rounded-lg flex items-center justify-between hover:border-blue-600 transition">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-cloud-upload-alt text-blue-600"></i>
+                            <span class="font-semibold text-navy-900">Document Upload Support</span>
+                        </div>
+                        <i class="fas fa-chevron-right text-[10px] text-gray-400"></i>
+                    </a>
+                    <a href="#" class="p-3 border rounded-lg flex items-center justify-between hover:border-blue-600 transition">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-tools text-blue-600"></i>
+                            <span class="font-semibold text-navy-900">Technical Support</span>
+                        </div>
+                        <i class="fas fa-chevron-right text-[10px] text-gray-400"></i>
+                    </a>
+                    <a href="#" class="p-3 border rounded-lg flex items-center justify-between hover:border-blue-600 transition">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-receipt text-blue-600"></i>
+                            <span class="font-semibold text-navy-900">Processing Fee Support</span>
+                        </div>
+                        <i class="fas fa-chevron-right text-[10px] text-gray-400"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Need Immediate Assistance Box (Right 1 col) -->
+            <div class="bg-emerald-50/60 rounded-xl border border-emerald-100 p-6 shadow-sm flex flex-col justify-between">
+                <div>
+                    <h3 class="font-bold text-sm text-navy-900 mb-1 text-center">Need Immediate Assistance?</h3>
+                    <p class="text-[11px] text-gray-500 text-center mb-5">Our team is ready to help you instantly.</p>
+
+                    <div class="grid grid-cols-3 gap-2">
+                        <a href="tel:+919876543210" class="bg-white p-3 rounded-xl border border-gray-200 text-center hover:shadow-md transition">
+                            <i class="fas fa-phone-alt text-blue-600 text-lg mb-1 block"></i>
+                            <span class="text-[10px] font-bold text-navy-900 block">Call Us</span>
+                        </a>
+                        <a href="https://wa.me/919876543210" class="bg-white p-3 rounded-xl border border-gray-200 text-center hover:shadow-md transition">
+                            <i class="fab fa-whatsapp text-emerald-600 text-lg mb-1 block"></i>
+                            <span class="text-[10px] font-bold text-navy-900 block">WhatsApp Us</span>
+                        </a>
+                        <a href="mailto:support@loanmitrai.com" class="bg-white p-3 rounded-xl border border-gray-200 text-center hover:shadow-md transition">
+                            <i class="fas fa-envelope text-blue-600 text-lg mb-1 block"></i>
+                            <span class="text-[10px] font-bold text-navy-900 block">Email Us</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- WHY CONTACT & FOLLOW US -->
+    <section class="py-4 max-w-7xl mx-auto px-4">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Why Contact -->
+            <div class="lg:col-span-2 bg-white rounded-xl border border-gray-200 p-4 shadow-sm flex flex-col justify-center">
+                <h4 class="text-xs font-bold text-navy-900 mb-3 text-center">Why Contact LoanMitra AI?</h4>
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center">
+                    <div class="p-2">
+                        <i class="fas fa-headset text-blue-600 text-base mb-1"></i>
+                        <p class="text-[10px] font-bold text-navy-900">Dedicated Customer Support</p>
+                    </div>
+                    <div class="p-2">
+                        <i class="fas fa-bolt text-blue-600 text-base mb-1"></i>
+                        <p class="text-[10px] font-bold text-navy-900">Quick Response Time</p>
+                    </div>
+                    <div class="p-2">
+                        <i class="fas fa-lock text-blue-600 text-base mb-1"></i>
+                        <p class="text-[10px] font-bold text-navy-900">Secure Communication</p>
+                    </div>
+                    <div class="p-2">
+                        <i class="fas fa-hands-helping text-blue-600 text-base mb-1"></i>
+                        <p class="text-[10px] font-bold text-navy-900">Application Assistance</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Follow Us -->
+            <div class="bg-white rounded-xl border border-gray-200 p-4 shadow-sm flex flex-col justify-center items-center">
+                <h4 class="text-xs font-bold text-navy-900 mb-3">Follow Us</h4>
+                <div class="flex items-center space-x-3 text-xs">
+                    <a href="#" class="w-8 h-8 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center hover:bg-blue-600 hover:text-white transition"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="w-8 h-8 bg-pink-50 text-pink-600 rounded-full flex items-center justify-center hover:bg-pink-600 hover:text-white transition"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="w-8 h-8 bg-blue-50 text-blue-700 rounded-full flex items-center justify-center hover:bg-blue-700 hover:text-white transition"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" class="w-8 h-8 bg-red-50 text-red-600 rounded-full flex items-center justify-center hover:bg-red-600 hover:text-white transition"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="w-8 h-8 bg-gray-100 text-black rounded-full flex items-center justify-center hover:bg-black hover:text-white transition"><i class="fab fa-x-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAP & OUR COMMITMENT -->
+    <section class="py-6 max-w-7xl mx-auto px-4">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <!-- Map Placeholder (2 cols) -->
+            <div class="lg:col-span-2 bg-white rounded-xl border border-gray-200 p-3 shadow-sm relative overflow-hidden h-48">
+                <div class="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-md text-[10px] font-bold text-navy-900 shadow z-10 flex items-center space-x-1">
+                    <i class="fas fa-map-marker-alt text-red-500"></i>
+                    <span>Office Location</span>
+                </div>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14008.114827184245!2d77.0869234!3d28.4711046!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390d192193555555%3A0x86701f2ed290b2f1!2sCyber%20City%20Gurugram!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" class="w-full h-full border-0 rounded-lg" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+
+            <!-- Our Commitment (1 col) -->
+            <div class="bg-blue-50/70 rounded-xl border border-blue-100 p-6 shadow-sm flex flex-col items-center justify-center text-center">
+                <div class="w-14 h-14 bg-blue-600 text-white rounded-full flex items-center justify-center text-2xl mb-3 shadow">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 class="font-bold text-sm text-navy-900 mb-2">Our Commitment</h3>
+                <p class="text-[11px] text-gray-500 leading-relaxed max-w-xs">
+                    Our support team is committed to providing timely assistance and transparent communication throughout your loan application journey.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- BOTTOM MOTIVATIONAL BANNER -->
+    <section class="bg-navy-900 text-white py-6 border-b border-navy-800">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-4">
+                <span class="text-3xl font-serif text-blue-400">“</span>
+                <div>
+                    <h3 class="text-base font-bold">Your Questions Matter.</h3>
+                    <p class="text-xs text-blue-400 font-semibold">We're Here To Help Every Step of the Way.</p>
+                </div>
+            </div>
+            <div class="w-10 h-10 bg-blue-600/30 border border-blue-400/30 rounded-full flex items-center justify-center text-blue-400 text-lg shrink-0">
+                <i class="fas fa-headset"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-navy-900 text-gray-300 pt-10 pb-6">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 text-xs">
+            <div>
+                <h4 class="text-white font-bold text-sm mb-3">LoanMitra AI</h4>
+                <p class="text-gray-400 leading-relaxed">AI-Powered Loan Assistance Platform helping users find optimal financing with total transparency.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-sm mb-3">Quick Links</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-white">Loans</a></li>
+                    <li><a href="#" class="hover:text-white">EMI Calculator</a></li>
+                    <li><a href="#" class="hover:text-white">About Us</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-sm mb-3">Support</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-white">FAQs</a></li>
+                    <li><a href="#" class="hover:text-white">Contact Us</a></li>
+                    <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-sm mb-3">Contact Us</h4>
+                <p class="mb-1"><i class="fas fa-phone mr-2"></i> +91 98765 43210</p>
+                <p><i class="fas fa-envelope mr-2"></i> support@loanmitrai.com</p>
+            </div>
+        </div>
+        <div class="border-t border-navy-800 mt-8 pt-4 text-center text-[10px] text-gray-500">
+            © 2026 LoanMitra AI. All rights reserved.
+        </div>
+    </footer>
+    <script>
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const closeDrawerBtn = document.getElementById('closeDrawerBtn');
+        const sideDrawer = document.getElementById('sideDrawer');
+        const navBackdrop = document.getElementById('navBackdrop');
+        const loansDropdownToggle = document.getElementById('loansDropdownToggle');
+        const loansSubmenu = document.getElementById('loansSubmenu');
+        const loansArrow = document.getElementById('loansArrow');
+
+        // Open Side Drawer
+        function openNav() {
+            sideDrawer.classList.remove('translate-x-full');
+            navBackdrop.classList.remove('opacity-0', 'pointer-events-none');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close Side Drawer
+        function closeNav() {
+            sideDrawer.classList.add('translate-x-full');
+            navBackdrop.classList.add('opacity-0', 'pointer-events-none');
+            document.body.style.overflow = '';
+        }
+
+        mobileMenuBtn.addEventListener('click', openNav);
+        closeDrawerBtn.addEventListener('click', closeNav);
+        navBackdrop.addEventListener('click', closeNav);
+
+        // Submenu Toggle inside Mobile Drawer
+        loansDropdownToggle.addEventListener('click', () => {
+            loansSubmenu.classList.toggle('hidden');
+            loansArrow.classList.toggle('rotate-180');
+        });
+    </script>
+</body>
+</html>

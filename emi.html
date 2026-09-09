@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoanMitra AI - EMI Calculator</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Chart.js for Donut Chart -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            900: '#001a35',
+                            800: '#0b2545',
+                            700: '#134074',
+                        },
+                        brand: {
+                            blue: '#1d4ed8',
+                            light: '#eff6ff',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased relative">
+
+    <!-- 1. TOP HEADER BAR -->
+    <div class="bg-navy-900 text-white text-xs py-2 px-4 border-b border-navy-800">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <div class="flex items-center space-x-6">
+                <span><i class="fas fa-headset mr-1"></i> Customer Support: <strong>+91 93765 43210</strong></span>
+                <span class="hidden sm:inline"><i class="fas fa-envelope mr-1"></i> <strong>support@loanmitrai.com</strong></span>
+            </div>
+            <div class="flex items-center space-x-3">
+                <span>Follow Us:</span>
+                <a href="#" class="w-5 h-5 bg-blue-600 rounded-sm flex items-center justify-center text-white text-[10px]"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="w-5 h-5 bg-blue-700 rounded-sm flex items-center justify-center text-white text-[10px]"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="w-5 h-5 bg-pink-600 rounded-sm flex items-center justify-center text-white text-[10px]"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="w-5 h-5 bg-red-600 rounded-sm flex items-center justify-center text-white text-[10px]"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <nav class="bg-white border-b border-gray-200 sticky top-0 z-40 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+
+            <div class="flex items-center space-x-2">
+                <div class="bg-blue-600 text-white p-2 rounded-lg">
+                    <i class="fas fa-shield-alt text-xl"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-extrabold text-navy-900 block leading-none">LoanMitra AI</span>
+                    <span class="text-[9px] text-gray-500 font-semibold tracking-wider block">AI-Powered Loan Assistance</span>
+                </div>
+            </div>
+
+            <div class="hidden lg:flex items-center space-x-6 text-xs font-semibold text-gray-700">
+                <a href="index.html" class="text-blue-600 border-b-2 border-blue-600 pb-1">Home</a>
+                <a href="about.html" class="hover:text-blue-600">About Us</a>
+                <a href="loan-product.html" class="hover:text-blue-600">Loan Products <i class="fas fa-chevron-down text-[9px]"></i></a>
+                <a href="emi.html" class="hover:text-blue-600">EMI Calculator</a>
+                <a href="faq.html" class="hover:text-blue-600">FAQs</a>
+                <a href="contact.html" class="hover:text-blue-600">Contact Us</a>
+            </div>
+
+            <div class="flex items-center space-x-3">
+                <div class="hidden sm:flex items-center space-x-2">
+                    <button class="w-36 h-9 flex items-center justify-center border border-blue-600 text-blue-600 hover:bg-blue-50 text-xs font-bold rounded-md transition" onclick="window.location.href='Login.aspx'">
+                        Access Application
+                    </button>
+                    <button class="w-36 h-9 flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-md shadow transition" onclick="window.location.href='Registration.aspx'">
+                        Sign Up
+                    </button>
+                </div>
+
+                <button id="mobileMenuBtn" class="lg:hidden p-2 text-navy-900 hover:text-blue-600 focus:outline-none text-xl" aria-label="Open Navigation Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div id="navBackdrop" class="fixed inset-0 bg-navy-900/60 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+    <aside id="sideDrawer" class="fixed top-0 right-0 w-80 max-w-[85vw] h-full bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col justify-between">
+        <div>
+            <div class="p-4 bg-navy-900 text-white flex justify-between items-center border-b border-navy-800">
+                <div class="flex items-center space-x-2">
+                    <div class="bg-blue-600 p-1.5 rounded">
+                        <i class="fas fa-shield-alt text-base text-white"></i>
+                    </div>
+                    <span class="font-bold text-base tracking-wide">LoanMitra AI</span>
+                </div>
+                <button id="closeDrawerBtn" class="w-8 h-8 rounded-full bg-navy-800 hover:bg-navy-700 text-white flex items-center justify-center transition focus:outline-none">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="p-4 space-y-1 text-sm font-semibold text-gray-700">
+                <a href="index.html" class="flex items-center justify-between p-3 rounded-lg bg-blue-50 text-blue-600 font-bold">
+                    <span><i class="fas fa-home w-6"></i> Home</span>
+                </a>
+
+                <a href="about.html" class="flex items-center p-3 rounded-lg hover:bg-gray-100 transition">
+                    <span><i class="fas fa-info-circle w-6"></i> About Us</span>
+                </a>
+
+                <a href="loan-product.html" class="flex items-center p-3 rounded-lg hover:bg-gray-100 transition">
+                    <span><i class="fas fa-boxes w-6"></i> Loan Products</span>
+                </a>
+
+                <a href="emi.html" class="flex items-center p-3 rounded-lg hover:bg-gray-100 transition">
+                    <span><i class="fas fa-calculator w-6"></i> EMI Calculator</span>
+                </a>
+
+                <a href="faq.html" class="flex items-center p-3 rounded-lg hover:bg-gray-100 transition">
+                    <span><i class="fas fa-question-circle w-6"></i> FAQs</span>
+                </a>
+
+                <a href="contact.html" class="flex items-center p-3 rounded-lg hover:bg-gray-100 transition">
+                    <span><i class="fas fa-envelope w-6"></i> Contact Us</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="p-4 border-t border-gray-200 bg-gray-50 space-y-2">
+            <button class="w-full py-2.5 border border-blue-600 text-blue-600 font-bold text-xs rounded-lg hover:bg-blue-50 transition" onclick="window.location.href='Login.aspx'">
+                Access Application
+            </button>
+            <button class="w-full py-2.5 bg-blue-600 text-white font-bold text-xs rounded-lg shadow hover:bg-blue-700 transition" onclick="window.location.href='Registration.aspx'">
+                Log In
+            </button>
+        </div>
+    </aside>
+
+    <!-- HERO HEADER SECTION -->
+    <section class="py-10 bg-gradient-to-r from-blue-50/50 via-white to-blue-50/50 border-b">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div>
+                <h1 class="text-3xl md:text-4xl font-extrabold text-navy-900 mb-2">EMI Calculator</h1>
+                <h2 class="text-lg font-bold text-blue-600 mb-3">Calculate Your Monthly EMI</h2>
+                <p class="text-xs text-gray-500 leading-relaxed max-w-lg">
+                    Estimate your monthly loan repayment instantly using our smart EMI Calculator. Adjust the loan amount, interest rate, and loan tenure to get an approximate EMI before applying.
+                </p>
+            </div>
+            <div class="flex justify-center md:justify-end">
+                <img src="Images/q5.png" alt="Calculate EMI" class="w-full max-w-md h-56 object-cover rounded-2xl shadow-md border">
+            </div>
+        </div>
+    </section>
+
+    <!-- CALCULATOR MAIN SECTION -->
+    <section class="py-10 bg-gray-50/50">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-3 gap-6">
+
+            <!-- 1. INPUT SLIDERS CARD -->
+            <div class="bg-white rounded-xl border border-gray-200 p-6 shadow-sm flex flex-col justify-between">
+                <div>
+                    <h3 class="font-bold text-base text-navy-900 mb-6 pb-2 border-b">EMI Calculator</h3>
+
+                    <!-- Loan Amount -->
+                    <div class="mb-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <label class="text-xs font-bold text-navy-900">Loan Amount</label>
+                            <div class="relative">
+                                <span class="absolute left-2.5 top-1.5 text-xs font-bold text-gray-500">₹</span>
+                                <input type="number" id="amountInput" value="500000" class="w-32 py-1 pl-6 pr-2 border rounded-md text-xs font-bold text-right text-navy-900 focus:outline-none focus:border-blue-600">
+                            </div>
+                        </div>
+                        <input type="range" id="amountRange" min="50000" max="10000000" step="10000" value="500000" class="w-full accent-blue-600 cursor-pointer">
+                        <div class="flex justify-between text-[10px] text-gray-400 mt-1">
+                            <span>₹50,000</span>
+                            <span>₹1,00,00,000</span>
+                        </div>
+                    </div>
+
+                    <!-- Interest Rate -->
+                    <div class="mb-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <label class="text-xs font-bold text-navy-900">Interest Rate (p.a.)</label>
+                            <div class="relative">
+                                <input type="number" id="rateInput" step="0.1" value="11.5" class="w-24 py-1 pl-2 pr-6 border rounded-md text-xs font-bold text-right text-navy-900 focus:outline-none focus:border-blue-600">
+                                <span class="absolute right-2.5 top-1.5 text-xs font-bold text-gray-500">%</span>
+                            </div>
+                        </div>
+                        <input type="range" id="rateRange" min="8.5" max="24.0" step="0.1" value="11.5" class="w-full accent-blue-600 cursor-pointer">
+                        <div class="flex justify-between text-[10px] text-gray-400 mt-1">
+                            <span>8.50%</span>
+                            <span>24.00%</span>
+                        </div>
+                    </div>
+
+                    <!-- Loan Tenure -->
+                    <div class="mb-6">
+                        <div class="flex justify-between items-center mb-2">
+                            <label class="text-xs font-bold text-navy-900">Loan Tenure</label>
+                            <div class="relative">
+                                <input type="number" id="tenureInput" value="36" class="w-28 py-1 pl-2 pr-12 border rounded-md text-xs font-bold text-right text-navy-900 focus:outline-none focus:border-blue-600">
+                                <span class="absolute right-2 top-1.5 text-[10px] font-bold text-gray-500">Months</span>
+                            </div>
+                        </div>
+                        <input type="range" id="tenureRange" min="6" max="360" step="6" value="36" class="w-full accent-blue-600 cursor-pointer">
+                        <div class="flex justify-between text-[10px] text-gray-400 mt-1">
+                            <span>6 Months</span>
+                            <span>30 Years</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button onclick="calculateEMI()" class="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs rounded-lg shadow transition flex items-center justify-center space-x-2">
+                    <i class="fas fa-calculator"></i>
+                    <span>Calculate EMI</span>
+                </button>
+            </div>
+
+            <!-- 2. CALCULATION RESULT CARDS -->
+            <div class="bg-white rounded-xl border border-gray-200 p-6 shadow-sm flex flex-col justify-between">
+                <h3 class="font-bold text-base text-navy-900 mb-4 pb-2 border-b">Calculation Result</h3>
+
+                <div class="space-y-3">
+                    <!-- Monthly EMI -->
+                    <div class="bg-blue-50/60 p-3.5 rounded-xl border border-blue-100 flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-blue-600 text-white rounded-lg flex items-center justify-center text-lg shrink-0">
+                            <i class="fas fa-calendar-alt"></i>
+                        </div>
+                        <div>
+                            <span class="text-[11px] font-semibold text-gray-500 block">Monthly EMI</span>
+                            <span id="monthlyEmi" class="text-lg font-extrabold text-blue-600">₹ 16,194</span>
+                        </div>
+                    </div>
+
+                    <!-- Total Interest -->
+                    <div class="bg-emerald-50/60 p-3.5 rounded-xl border border-emerald-100 flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-emerald-600 text-white rounded-lg flex items-center justify-center text-lg shrink-0">
+                            <i class="fas fa-percentage"></i>
+                        </div>
+                        <div>
+                            <span class="text-[11px] font-semibold text-gray-500 block">Total Interest</span>
+                            <span id="totalInterest" class="text-lg font-extrabold text-emerald-600">₹ 82,984</span>
+                        </div>
+                    </div>
+
+                    <!-- Total Repayment Amount -->
+                    <div class="bg-purple-50/60 p-3.5 rounded-xl border border-purple-100 flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-purple-600 text-white rounded-lg flex items-center justify-center text-lg shrink-0">
+                            <i class="fas fa-hand-holding-usd"></i>
+                        </div>
+                        <div>
+                            <span class="text-[11px] font-semibold text-gray-500 block">Total Repayment Amount</span>
+                            <span id="totalRepayment" class="text-lg font-extrabold text-purple-600">₹ 5,82,984</span>
+                        </div>
+                    </div>
+
+                    <!-- Total Tenure -->
+                    <div class="bg-amber-50/60 p-3.5 rounded-xl border border-amber-100 flex items-center space-x-3">
+                        <div class="w-10 h-10 bg-amber-500 text-white rounded-lg flex items-center justify-center text-lg shrink-0">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div>
+                            <span class="text-[11px] font-semibold text-gray-500 block">Total Tenure</span>
+                            <span id="totalTenureDisp" class="text-lg font-extrabold text-amber-600">36 Months</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. EMI BREAKDOWN CHART CARD -->
+            <div class="bg-white rounded-xl border border-gray-200 p-6 shadow-sm flex flex-col justify-between">
+                <h3 class="font-bold text-base text-navy-900 mb-2 pb-2 border-b">EMI Breakdown</h3>
+
+                <!-- Chart Wrapper -->
+                <div class="relative w-44 h-44 mx-auto my-2">
+                    <canvas id="emiChart"></canvas>
+                </div>
+
+                <!-- Legend Details -->
+                <div class="space-y-2 text-xs border-t pt-3">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center space-x-2">
+                            <span class="w-3 h-3 rounded-full bg-blue-600"></span>
+                            <span class="text-gray-600 font-medium">Loan Amount (Principal)</span>
+                        </div>
+                        <span id="principalChartVal" class="font-bold text-navy-900">₹ 5,00,000</span>
+                    </div>
+
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center space-x-2">
+                            <span class="w-3 h-3 rounded-full bg-emerald-500"></span>
+                            <span class="text-gray-600 font-medium">Total Interest</span>
+                        </div>
+                        <span id="interestChartVal" class="font-bold text-navy-900">₹ 82,984</span>
+                    </div>
+
+                    <div class="flex justify-between items-center pt-2 border-t font-bold text-navy-900">
+                        <span>Total Repayment</span>
+                        <span id="totalChartVal" class="text-blue-600">₹ 5,82,984</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- INFO CARDS (BENEFITS, HOW TO USE, WHY USE) -->
+    <section class="py-10 bg-white border-y">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-6">
+
+            <!-- Benefits -->
+            <div class="bg-gray-50/70 rounded-xl p-5 border">
+                <h4 class="font-bold text-sm text-navy-900 mb-4 pb-2 border-b">Benefits of EMI Calculator</h4>
+                <ul class="space-y-2 text-xs text-gray-600">
+                    <li class="flex items-center space-x-2"><i class="fas fa-check-circle text-blue-600"></i><span>Instant EMI Calculation</span></li>
+                    <li class="flex items-center space-x-2"><i class="fas fa-check-circle text-blue-600"></i><span>Plan Your Monthly Budget</span></li>
+                    <li class="flex items-center space-x-2"><i class="fas fa-check-circle text-blue-600"></i><span>Compare Different Loan Amounts</span></li>
+                    <li class="flex items-center space-x-2"><i class="fas fa-check-circle text-blue-600"></i><span>Compare Loan Tenure</span></li>
+                    <li class="flex items-center space-x-2"><i class="fas fa-check-circle text-blue-600"></i><span>Estimate Total Interest Cost</span></li>
+                    <li class="flex items-center space-x-2"><i class="fas fa-check-circle text-blue-600"></i><span>100% Free to Use</span></li>
+                </ul>
+            </div>
+
+            <!-- How To Use -->
+            <div class="bg-gray-50/70 rounded-xl p-5 border text-center">
+                <h4 class="font-bold text-sm text-navy-900 mb-4 pb-2 border-b text-left">How To Use</h4>
+                <div class="grid grid-cols-5 gap-1 items-center py-4">
+                    <div class="space-y-1">
+                        <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mx-auto text-xs"><i class="fas fa-edit"></i></div>
+                        <span class="text-[9px] font-bold text-gray-700 block">Step 1</span>
+                        <span class="text-[8px] text-gray-500 block leading-tight">Enter Amount</span>
+                    </div>
+                    <i class="fas fa-arrow-right text-gray-300 text-[10px]"></i>
+                    <div class="space-y-1">
+                        <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mx-auto text-xs"><i class="fas fa-percent"></i></div>
+                        <span class="text-[9px] font-bold text-gray-700 block">Step 2</span>
+                        <span class="text-[8px] text-gray-500 block leading-tight">Select Rate</span>
+                    </div>
+                    <i class="fas fa-arrow-right text-gray-300 text-[10px]"></i>
+                    <div class="space-y-1">
+                        <div class="w-8 h-8 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center mx-auto text-xs"><i class="fas fa-calendar-alt"></i></div>
+                        <span class="text-[9px] font-bold text-gray-700 block">Step 3</span>
+                        <span class="text-[8px] text-gray-500 block leading-tight">Select Tenure</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Why Use -->
+            <div class="bg-gray-50/70 rounded-xl p-5 border">
+                <h4 class="font-bold text-sm text-navy-900 mb-4 pb-2 border-b">Why Use Our EMI Calculator?</h4>
+                <ul class="space-y-2 text-xs text-gray-600">
+                    <li class="flex items-center space-x-2.5"><i class="fas fa-bolt text-blue-600 w-4"></i><span>Fast & Accurate Calculation</span></li>
+                    <li class="flex items-center space-x-2.5"><i class="fas fa-shield-alt text-blue-600 w-4"></i><span>Completely Free</span></li>
+                    <li class="flex items-center space-x-2.5"><i class="fas fa-mobile-alt text-blue-600 w-4"></i><span>Mobile Friendly</span></li>
+                    <li class="flex items-center space-x-2.5"><i class="fas fa-stopwatch text-blue-600 w-4"></i><span>Instant Results</span></li>
+                    <li class="flex items-center space-x-2.5"><i class="fas fa-chart-line text-blue-600 w-4"></i><span>Better Financial Planning</span></li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- IMPORTANT NOTE BANNER -->
+    <section class="py-6 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="bg-amber-50 border border-amber-200 rounded-xl p-4 flex items-start space-x-3">
+                <div class="w-8 h-8 bg-amber-400 text-white rounded-lg flex items-center justify-center text-sm shrink-0 mt-0.5">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="text-xs text-amber-900">
+                    <h5 class="font-bold text-sm mb-0.5">Important Note</h5>
+                    <p class="leading-relaxed">The calculated EMI is only an estimate. Actual EMI, interest rate, and loan tenure may vary depending on lender policies, applicant eligibility, and final loan approval.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- READY TO APPLY BANNER -->
+    <section class="py-6 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="bg-emerald-50/60 border border-emerald-200 rounded-xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-emerald-600 text-white rounded-xl flex items-center justify-center text-lg shrink-0">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-sm text-navy-900">Ready to Apply?</h4>
+                        <p class="text-xs text-gray-500">Check your eligibility and start your loan application today.</p>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-3 w-full sm:w-auto">
+                    <button class="flex-1 sm:flex-none px-4 py-2 border border-blue-600 text-blue-600 font-bold text-xs rounded-lg hover:bg-blue-50 transition">
+                        Check Eligibility
+                    </button>
+                    <button class="flex-1 sm:flex-none px-5 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs rounded-lg shadow transition flex items-center justify-center space-x-1">
+                        <span>Apply Now</span>
+                        <i class="fas fa-arrow-right text-[10px]"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BLUE MOTIVATIONAL BANNER -->
+    <section class="bg-navy-900 text-white py-8 border-b border-navy-800">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center space-x-4">
+                <div class="w-12 h-12 bg-blue-600/30 border border-blue-400/30 rounded-full flex items-center justify-center text-blue-400 text-xl shrink-0">
+                    <i class="fas fa-quote-left"></i>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold tracking-wide">"Plan Smart. Borrow Wisely. Calculate Your EMI Before You Apply."</h3>
+                </div>
+            </div>
+            <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white text-xl shadow-lg shrink-0">
+                <i class="fas fa-calculator"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-navy-900 text-gray-300 pt-10 pb-6">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 text-xs">
+            <div>
+                <h4 class="text-white font-bold text-sm mb-3">LoanMitra AI</h4>
+                <p class="text-gray-400 leading-relaxed">AI-Powered Loan Assistance Platform helping users find optimal financing with total transparency.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-sm mb-3">Quick Links</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-white">Loans</a></li>
+                    <li><a href="#" class="hover:text-white">EMI Calculator</a></li>
+                    <li><a href="#" class="hover:text-white">About Us</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-sm mb-3">Support</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-white">FAQs</a></li>
+                    <li><a href="#" class="hover:text-white">Contact Us</a></li>
+                    <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-sm mb-3">Contact Us</h4>
+                <p class="mb-1"><i class="fas fa-phone mr-2"></i> +91 93765 43210</p>
+                <p><i class="fas fa-envelope mr-2"></i> support@loanmitrai.com</p>
+            </div>
+        </div>
+        <div class="border-t border-navy-800 mt-8 pt-4 text-center text-[10px] text-gray-500">
+            © 2026 LoanMitra AI. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC & CALCULATION -->
+    <script>
+        // DOM Elements
+        const amountRange = document.getElementById('amountRange');
+        const amountInput = document.getElementById('amountInput');
+        const rateRange = document.getElementById('rateRange');
+        const rateInput = document.getElementById('rateInput');
+        const tenureRange = document.getElementById('tenureRange');
+        const tenureInput = document.getElementById('tenureInput');
+
+        let emiChart;
+
+        // Sync inputs and ranges
+        function syncInputs(range, input) {
+            range.addEventListener('input', () => {
+                input.value = range.value;
+                calculateEMI();
+            });
+            input.addEventListener('change', () => {
+                range.value = input.value;
+                calculateEMI();
+            });
+        }
+
+        syncInputs(amountRange, amountInput);
+        syncInputs(rateRange, rateInput);
+        syncInputs(tenureRange, tenureInput);
+
+        // EMI Calculation Formula
+        function calculateEMI() {
+            const P = parseFloat(amountInput.value);
+            const annualRate = parseFloat(rateInput.value);
+            const N = parseFloat(tenureInput.value);
+
+            const R = (annualRate / 12) / 100;
+
+            // EMI Formula: P * R * (1+R)^N / ((1+R)^N - 1)
+            const emi = (P * R * Math.pow(1 + R, N)) / (Math.pow(1 + R, N) - 1);
+            const totalPayment = emi * N;
+            const totalInterest = totalPayment - P;
+
+            // Update UI
+            document.getElementById('monthlyEmi').innerText = '₹ ' + Math.round(emi).toLocaleString('en-IN');
+            document.getElementById('totalInterest').innerText = '₹ ' + Math.round(totalInterest).toLocaleString('en-IN');
+            document.getElementById('totalRepayment').innerText = '₹ ' + Math.round(totalPayment).toLocaleString('en-IN');
+            document.getElementById('totalTenureDisp').innerText = N + ' Months';
+
+            document.getElementById('principalChartVal').innerText = '₹ ' + P.toLocaleString('en-IN');
+            document.getElementById('interestChartVal').innerText = '₹ ' + Math.round(totalInterest).toLocaleString('en-IN');
+            document.getElementById('totalChartVal').innerText = '₹ ' + Math.round(totalPayment).toLocaleString('en-IN');
+
+            updateChart(P, totalInterest);
+        }
+
+        // Initialize and Update Chart.js Donut
+        function updateChart(principal, interest) {
+            const ctx = document.getElementById('emiChart').getContext('2d');
+
+            if (emiChart) {
+                emiChart.destroy();
+            }
+
+            emiChart = new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Principal Amount', 'Total Interest'],
+                    datasets: [{
+                        data: [principal, interest],
+                        backgroundColor: ['#1d4ed8', '#10b981'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    cutout: '75%',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    }
+                }
+            });
+        }
+
+        // Initial Calculation on Page Load
+        calculateEMI();
+
+        // Mobile Drawer Interaction
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const closeDrawerBtn = document.getElementById('closeDrawerBtn');
+        const sideDrawer = document.getElementById('sideDrawer');
+        const navBackdrop = document.getElementById('navBackdrop');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            sideDrawer.classList.remove('translate-x-full');
+            navBackdrop.classList.remove('opacity-0', 'pointer-events-none');
+        });
+
+        closeDrawerBtn.addEventListener('click', () => {
+            sideDrawer.classList.add('translate-x-full');
+            navBackdrop.classList.add('opacity-0', 'pointer-events-none');
+        });
+    </script>
+</body>
+</html>

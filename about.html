@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoanMitra AI - About Us</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        navy: {
+                            900: '#001a35',
+                            800: '#0b2545',
+                            700: '#134074',
+                        },
+                        brand: {
+                            blue: '#1d4ed8',
+                            light: '#eff6ff',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased relative">
+
+    <!-- 1. TOP HEADER BAR -->
+    <div class="bg-navy-900 text-white text-xs py-2 px-4 border-b border-navy-800">
+        <div class="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-2">
+            <div class="flex items-center space-x-6">
+                <span><i class="fas fa-headset mr-1"></i> Customer Support: <strong>+91 93765 43210</strong></span>
+                <span class="hidden sm:inline"><i class="fas fa-envelope mr-1"></i> <strong>support@loanmitrai.com</strong></span>
+            </div>
+            <div class="flex items-center space-x-3">
+                <span>Follow Us:</span>
+                <a href="#" class="w-5 h-5 bg-blue-600 rounded-sm flex items-center justify-center text-white text-[10px]"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="w-5 h-5 bg-blue-700 rounded-sm flex items-center justify-center text-white text-[10px]"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#" class="w-5 h-5 bg-pink-600 rounded-sm flex items-center justify-center text-white text-[10px]"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="w-5 h-5 bg-red-600 rounded-sm flex items-center justify-center text-white text-[10px]"><i class="fab fa-youtube"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <nav class="bg-white border-b border-gray-200 sticky top-0 z-40 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
+
+            <div class="flex items-center space-x-2">
+                <div class="bg-blue-600 text-white p-2 rounded-lg">
+                    <i class="fas fa-shield-alt text-xl"></i>
+                </div>
+                <div>
+                    <span class="text-xl font-extrabold text-navy-900 block leading-none">LoanMitra AI</span>
+                    <span class="text-[9px] text-gray-500 font-semibold tracking-wider block">AI-Powered Loan Assistance</span>
+                </div>
+            </div>
+
+            <div class="hidden lg:flex items-center space-x-6 text-xs font-semibold text-gray-700">
+                <a href="index.html" class="text-blue-600 border-b-2 border-blue-600 pb-1">Home</a>
+                <a href="about.html" class="hover:text-blue-600">About Us</a>
+                <a href="loan-product.html" class="hover:text-blue-600">Loan Products <i class="fas fa-chevron-down text-[9px]"></i></a>
+                <a href="emi.html" class="hover:text-blue-600">EMI Calculator</a>
+                <a href="faq.html" class="hover:text-blue-600">FAQs</a>
+                <a href="contact.html" class="hover:text-blue-600">Contact Us</a>
+            </div>
+
+            <div class="flex items-center space-x-3">
+                <div class="hidden sm:flex items-center space-x-2">
+                    <button class="w-36 h-9 flex items-center justify-center border border-blue-600 text-blue-600 hover:bg-blue-50 text-xs font-bold rounded-md transition" onclick="window.location.href='Login.aspx'">
+                        Access Application
+                    </button>
+                    <button class="w-36 h-9 flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-md shadow transition" onclick="window.location.href='Registration.aspx'">
+                        Sign Up
+                    </button>
+                </div>
+
+                <button id="mobileMenuBtn" class="lg:hidden p-2 text-navy-900 hover:text-blue-600 focus:outline-none text-xl" aria-label="Open Navigation Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <div id="navBackdrop" class="fixed inset-0 bg-navy-900/60 backdrop-blur-sm z-50 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+    <aside id="sideDrawer" class="fixed top-0 right-0 w-80 max-w-[85vw] h-full bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 ease-in-out flex flex-col justify-between">
+        <div>
+            <div class="p-4 bg-navy-900 text-white flex justify-between items-center border-b border-navy-800">
+                <div class="flex items-center space-x-2">
+                    <div class="bg-blue-600 p-1.5 rounded">
+                        <i class="fas fa-shield-alt text-base text-white"></i>
+                    </div>
+                    <span class="font-bold text-base tracking-wide">LoanMitra AI</span>
+                </div>
+                <button id="closeDrawerBtn" class="w-8 h-8 rounded-full bg-navy-800 hover:bg-navy-700 text-white flex items-center justify-center transition focus:outline-none">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <div class="p-4 space-y-1 text-sm font-semibold text-gray-700">
+                <a href="index.html" class="flex items-center justify-between p-3 rounded-lg bg-blue-50 text-blue-600 font-bold">
+                    <span><i class="fas fa-home w-6"></i> Home</span>
+                </a>
+
+                <a href="about.html" class="flex items-center p-3 rounded-lg hover:bg-gray-100 transition">
+                    <span><i class="fas fa-info-circle w-6"></i> About Us</span>
+                </a>
+
+                <a href="loan-product.html" class="flex items-center p-3 rounded-lg hover:bg-gray-100 transition">
+                    <span><i class="fas fa-boxes w-6"></i> Loan Products</span>
+                </a>
+
+                <a href="emi.html" class="flex items-center p-3 rounded-lg hover:bg-gray-100 transition">
+                    <span><i class="fas fa-calculator w-6"></i> EMI Calculator</span>
+                </a>
+
+                <a href="faq.html" class="flex items-center p-3 rounded-lg hover:bg-gray-100 transition">
+                    <span><i class="fas fa-question-circle w-6"></i> FAQs</span>
+                </a>
+
+                <a href="contact.html" class="flex items-center p-3 rounded-lg hover:bg-gray-100 transition">
+                    <span><i class="fas fa-envelope w-6"></i> Contact Us</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="p-4 border-t border-gray-200 bg-gray-50 space-y-2">
+            <button class="w-full py-2.5 border border-blue-600 text-blue-600 font-bold text-xs rounded-lg hover:bg-blue-50 transition" onclick="window.location.href='Login.aspx'">
+                Access Application
+            </button>
+            <button class="w-full py-2.5 bg-blue-600 text-white font-bold text-xs rounded-lg shadow hover:bg-blue-700 transition" onclick="window.location.href='Registration.aspx'">
+                Log In
+            </button>
+        </div>
+    </aside>
+
+    <!-- HERO SECTION -->
+    <section class="py-12 bg-gradient-to-b from-blue-50/40 to-white border-b">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div class="space-y-4">
+                <span class="text-xs font-bold text-blue-600 uppercase tracking-wider">About Us</span>
+                <h1 class="text-3xl font-extrabold text-navy-900 leading-tight">
+                    About LoanMitra AI<br>
+                    <span class="text-blue-600 text-xl md:text-2xl font-bold">AI-Powered Loan Assistance Platform</span>
+                </h1>
+                <p class="text-xs text-gray-600 leading-relaxed">
+                    LoanMitra AI is a technology-driven loan assistance platform dedicated to simplifying the loan application journey for individuals, professionals, and businesses.
+                </p>
+                <p class="text-xs text-gray-600 leading-relaxed">
+                    Our goal is to make the loan process transparent, organized, and easy to understand through AI-powered profile analysis, digital verification, and real-time application tracking.
+                </p>
+                <p class="text-xs text-gray-600 leading-relaxed">
+                    From the moment an applicant checks eligibility until the final loan decision, our platform provides complete visibility into every stage of the application process.
+                </p>
+            </div>
+            <div class="flex justify-center">
+                <div class="relative w-full max-w-md h-64 bg-blue-100/70 rounded-2xl flex items-center justify-center border-4 border-white shadow-xl overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-blue-200/50 to-transparent"></div>
+                    <div class="absolute top-4 left-6 w-10 h-10 bg-white rounded-full shadow flex items-center justify-center text-blue-600 font-bold text-sm"><i class="fas fa-percent"></i></div>
+                    <div class="absolute top-4 right-6 w-10 h-10 bg-white rounded-full shadow flex items-center justify-center text-navy-900 font-bold text-sm"><i class="fas fa-university"></i></div>
+                    <div class="absolute bottom-6 right-10 w-10 h-10 bg-white rounded-full shadow flex items-center justify-center text-green-600 font-bold text-sm"><i class="fas fa-rupee-sign"></i></div>
+
+                    <div class="text-center z-10 space-y-2">
+                        <div class="">
+                            <img src="Images/q2.png" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHAT WE DO SECTION -->
+    <section class="py-12 bg-white border-b">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center max-w-2xl mx-auto mb-8">
+                <h2 class="text-xl font-bold text-navy-900 mb-1">What We Do</h2>
+                <p class="text-xs text-gray-500">At LoanMitra AI, we assist applicants throughout their loan journey by providing:</p>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl text-center hover:border-blue-300 transition shadow-sm">
+                    <div class="w-10 h-10 bg-orange-100 text-orange-600 rounded-full flex items-center justify-center mx-auto mb-2 text-base"><i class="fas fa-tachometer-alt"></i></div>
+                    <h3 class="text-xs font-bold text-gray-800">Low Cibil</h3>
+                </div>
+                <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl text-center hover:border-blue-300 transition shadow-sm">
+                    <div class="w-10 h-10 bg-red-100 text-red-600 rounded-full flex items-center justify-center mx-auto mb-2 text-base"><i class="fas fa-exclamation-triangle"></i></div>
+                    <h3 class="text-xs font-bold text-gray-800">Damaged Profile</h3>
+                </div>
+                <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl text-center hover:border-blue-300 transition shadow-sm">
+                    <div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-2 text-base"><i class="fas fa-brain"></i></div>
+                    <h3 class="text-xs font-bold text-gray-800">AI-Based Eligibility Analysis</h3>
+                </div>
+                <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl text-center hover:border-blue-300 transition shadow-sm">
+                    <div class="w-10 h-10 bg-sky-100 text-sky-600 rounded-full flex items-center justify-center mx-auto mb-2 text-base"><i class="fas fa-id-card"></i></div>
+                    <h3 class="text-xs font-bold text-gray-800">Digital KYC Verification</h3>
+                </div>
+                <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl text-center hover:border-blue-300 transition shadow-sm">
+                    <div class="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center mx-auto mb-2 text-base"><i class="fas fa-folder-minus"></i></div>
+                    <h3 class="text-xs font-bold text-gray-800">Secure Document Management</h3>
+                </div>
+                <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl text-center hover:border-blue-300 transition shadow-sm">
+                    <div class="w-10 h-10 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto mb-2 text-base"><i class="fas fa-chart-bar"></i></div>
+                    <h3 class="text-xs font-bold text-gray-800">Income & Profile Assessment</h3>
+                </div>
+                <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl text-center hover:border-blue-300 transition shadow-sm">
+                    <div class="w-10 h-10 bg-purple-100 text-purple-600 rounded-full flex items-center justify-center mx-auto mb-2 text-base"><i class="fas fa-network-wired"></i></div>
+                    <h3 class="text-xs font-bold text-gray-800">AI-Powered Lender Matching</h3>
+                </div>
+                <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl text-center hover:border-blue-300 transition shadow-sm">
+                    <div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-2 text-base"><i class="fas fa-redo"></i></div>
+                    <h3 class="text-xs font-bold text-gray-800">Up to 3 Lender Review Attempts</h3>
+                </div>
+                <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl text-center hover:border-blue-300 transition shadow-sm">
+                    <div class="w-10 h-10 bg-teal-100 text-teal-600 rounded-full flex items-center justify-center mx-auto mb-2 text-base"><i class="fas fa-desktop"></i></div>
+                    <h3 class="text-xs font-bold text-gray-800">Live Dashboard Tracking</h3>
+                </div>
+                <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl text-center hover:border-blue-300 transition shadow-sm">
+                    <div class="w-10 h-10 bg-cyan-100 text-cyan-600 rounded-full flex items-center justify-center mx-auto mb-2 text-base"><i class="fas fa-headset"></i></div>
+                    <h3 class="text-xs font-bold text-gray-800">Dedicated Customer Support</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MISSION & VISION SECTION -->
+    <section class="py-10 bg-gray-50 border-b">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex items-start space-x-4">
+                <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center text-2xl shrink-0">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <div>
+                    <h3 class="text-base font-bold text-navy-900 mb-1">Our Mission</h3>
+                    <p class="text-xs text-gray-600 leading-relaxed">
+                        Our mission is to simplify loan assistance through technology, transparency, and structured digital processes, helping applicants experience a smoother loan journey.
+                    </p>
+                </div>
+            </div>
+            <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm flex items-start space-x-4">
+                <div class="w-14 h-14 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center text-2xl shrink-0">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <div>
+                    <h3 class="text-base font-bold text-navy-900 mb-1">Our Vision</h3>
+                    <p class="text-xs text-gray-600 leading-relaxed">
+                        To become one of India's most trusted AI-powered loan assistance platforms by delivering transparent processes, secure technology, and outstanding customer experience.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY CHOOSE US SECTION -->
+    <section class="py-12 bg-white border-b">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+
+            <div class="md:col-span-7 space-y-4">
+                <h2 class="text-xl font-bold text-navy-900 mb-4">Why Choose LoanMitra AI?</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-gray-700">
+                    <div class="flex items-center space-x-2"><i class="fas fa-check-circle text-blue-600"></i><span>AI-Powered Profile Analysis</span></div>
+                    <div class="flex items-center space-x-2"><i class="fas fa-check-circle text-blue-600"></i><span>Digital Agreement & Paperless Process</span></div>
+                    <div class="flex items-center space-x-2"><i class="fas fa-check-circle text-blue-600"></i><span>Low cibil</span></div>
+                    <div class="flex items-center space-x-2"><i class="fas fa-check-circle text-blue-600"></i><span>Secure Document Handling</span></div>
+                    <div class="flex items-center space-x-2"><i class="fas fa-check-circle text-blue-600"></i><span>Damaged profile</span></div>
+                    <div class="flex items-center space-x-2"><i class="fas fa-check-circle text-blue-600"></i><span>Dedicated Customer Support</span></div>
+                    <div class="flex items-center space-x-2"><i class="fas fa-check-circle text-blue-600"></i><span>Up to 3 Lender Review Attempts</span></div>
+                    <div class="flex items-center space-x-2"><i class="fas fa-check-circle text-blue-600"></i><span>100% Online Application Process</span></div>
+                    <div class="flex items-center space-x-2"><i class="fas fa-check-circle text-blue-600"></i><span>Real-Time Application Dashboard</span></div>
+                    <div class="flex items-center space-x-2"><i class="fas fa-check-circle text-blue-600"></i><span>Easy-to-Track Loan Journey</span></div>
+                    <div class="flex items-center space-x-2 sm:col-span-2"><i class="fas fa-check-circle text-blue-600"></i><span>Check Application Tracker</span></div>
+                </div>
+            </div>
+
+            <div class="md:col-span-5 flex justify-center">
+                <div class="">
+                    <img src="Images/q3.png" />
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- OUR COMMITMENT SECTION -->
+    <section class="py-12 bg-gray-50 border-b">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+
+            <div class="md:col-span-5 space-y-3">
+                <h2 class="text-xl font-bold text-navy-900">Our Commitment</h2>
+                <p class="text-xs text-gray-600 leading-relaxed">
+                    We believe every applicant deserves a transparent and well-structured loan application process.
+                </p>
+                <p class="text-xs text-gray-600 leading-relaxed">
+                    Our platform is designed to provide real-time updates, secure document handling, and continuous support throughout the application journey.
+                </p>
+                <div class="pt-2">
+                    <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center text-blue-600 text-2xl">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="md:col-span-7 bg-white rounded-2xl ">
+                <h4 class="text-xs font-bold text-center text-navy-900 mb-6">Application Progress</h4>
+
+                <div class="flex justify-between items-center relative max-w-md mx-auto">
+                    <img src="Images/q4.png" />
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- OUR CORE VALUES -->
+    <section class="py-12 bg-white border-b">
+        <div class="max-w-7xl mx-auto px-4">
+            <h2 class="text-xl font-bold text-center text-navy-900 mb-8">Our Core Values</h2>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl text-center hover:border-blue-300 transition shadow-sm">
+                    <div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mx-auto mb-3"><i class="fas fa-shield-alt text-base"></i></div>
+                    <h3 class="text-xs font-bold text-navy-900 mb-1">Transparency</h3>
+                    <p class="text-[10px] text-gray-500 leading-tight">Every stage of your application is visible through our dashboard.</p>
+                </div>
+                <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl text-center hover:border-blue-300 transition shadow-sm">
+                    <div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mx-auto mb-3"><i class="fas fa-lock text-base"></i></div>
+                    <h3 class="text-xs font-bold text-navy-900 mb-1">Security</h3>
+                    <p class="text-[10px] text-gray-500 leading-tight">Your personal information and documents are protected using secure digital systems.</p>
+                </div>
+                <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl text-center hover:border-blue-300 transition shadow-sm">
+                    <div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mx-auto mb-3"><i class="fas fa-lightbulb text-base"></i></div>
+                    <h3 class="text-xs font-bold text-navy-900 mb-1">Technology</h3>
+                    <p class="text-[10px] text-gray-500 leading-tight">AI helps streamline profile analysis and lender matching.</p>
+                </div>
+                <div class="p-4 bg-gray-50 border border-gray-200 rounded-xl text-center hover:border-blue-300 transition shadow-sm">
+                    <div class="w-10 h-10 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center mx-auto mb-3"><i class="fas fa-user-shield text-base"></i></div>
+                    <h3 class="text-xs font-bold text-navy-900 mb-1">Customer First</h3>
+                    <p class="text-[10px] text-gray-500 leading-tight">Our support team is available to assist you throughout your loan application journey.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BLUE BANNER SECTION (FOOTER ER OPORER SECTION) -->
+    <section class=" py-8 ">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center space-x-4">
+                <div class="w-12 h-12 bg-blue-600/30 border border-blue-400/30 rounded-full flex items-center justify-center  text-xl shrink-0">
+                    <i class="fas fa-quote-left"></i>
+                </div>
+                <div>
+                    <h3 class="text-lg font-bold tracking-wide">"Simplifying Loan Assistance Through AI, Transparency & Trust."</h3>
+                    <p class="text-[10px] text-gray-400 mt-0.5">Note: Loan approval and terms are subject to lender eligibility and review.</p>
+                </div>
+            </div>
+            <div class="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center text-white text-xl shadow-lg shrink-0">
+                <i class="fas fa-lock"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-navy-900 text-gray-300 pt-10 pb-6">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-4 gap-8 text-xs">
+            <div>
+                <h4 class="text-white font-bold text-sm mb-3">LoanMitra AI</h4>
+                <p class="text-gray-400 leading-relaxed">AI-Powered Loan Assistance Platform helping users find optimal financing with total transparency.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-sm mb-3">Quick Links</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-white">Loans</a></li>
+                    <li><a href="#" class="hover:text-white">EMI Calculator</a></li>
+                    <li><a href="#" class="hover:text-white">About Us</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-sm mb-3">Support</h4>
+                <ul class="space-y-2">
+                    <li><a href="#" class="hover:text-white">FAQs</a></li>
+                    <li><a href="#" class="hover:text-white">Contact Us</a></li>
+                    <li><a href="#" class="hover:text-white">Privacy Policy</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold text-sm mb-3">Contact Us</h4>
+                <p class="mb-1"><i class="fas fa-phone mr-2"></i> +91 93765 43210</p>
+                <p><i class="fas fa-envelope mr-2"></i> support@loanmitrai.com</p>
+            </div>
+        </div>
+        <div class="border-t border-navy-800 mt-8 pt-4 text-center text-[10px] text-gray-500">
+            © 2026 LoanMitra AI. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT FOR MOBILE DRAWER INTERACTION -->
+    <script>
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const closeDrawerBtn = document.getElementById('closeDrawerBtn');
+        const sideDrawer = document.getElementById('sideDrawer');
+        const navBackdrop = document.getElementById('navBackdrop');
+        const loansDropdownToggle = document.getElementById('loansDropdownToggle');
+        const loansSubmenu = document.getElementById('loansSubmenu');
+        const loansArrow = document.getElementById('loansArrow');
+
+        function openNav() {
+            sideDrawer.classList.remove('translate-x-full');
+            navBackdrop.classList.remove('opacity-0', 'pointer-events-none');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeNav() {
+            sideDrawer.classList.add('translate-x-full');
+            navBackdrop.classList.add('opacity-0', 'pointer-events-none');
+            document.body.style.overflow = '';
+        }
+
+        mobileMenuBtn.addEventListener('click', openNav);
+        closeDrawerBtn.addEventListener('click', closeNav);
+        navBackdrop.addEventListener('click', closeNav);
+
+        loansDropdownToggle.addEventListener('click', () => {
+            loansSubmenu.classList.toggle('hidden');
+            loansArrow.classList.toggle('rotate-180');
+        });
+    </script>
+</body>
+</html>
